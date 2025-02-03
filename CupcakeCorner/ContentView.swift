@@ -20,30 +20,26 @@ struct Result: Codable {
 struct ContentView: View {
     
     @State private var results = [Result]()
+    @State private var userName = ""
+    @State private var email = ""
+    var disabledForm: Bool {
+        userName.count < 5 || email.count < 5
+    }
     
     var body: some View {
         
-        List(results, id: \.trackId) { item in
-            AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } else if phase.error != nil {
-                    Text("There was an error loading the pic")
-                } else {
-                    ProgressView()
+        Form {
+            Section {
+                TextField("Enter Username", text: $userName)
+                TextField("Enter Email", text: $email)
+            }
+            
+            Section {
+                Button("Create account") {
+                    print("creating account")
                 }
             }
-            .frame(width: 200, height: 200)
-            
-            VStack(alignment: .leading) {
-                Text(item.trackName)
-            }
-        }
-        .listStyle(.plain)
-        .task {
-            await loadData()
+            .disabled(disabledForm)
         }
     }
     

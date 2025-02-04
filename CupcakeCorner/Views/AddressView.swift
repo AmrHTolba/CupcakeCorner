@@ -9,14 +9,25 @@ import SwiftUI
 
 struct AddressView: View {
     
-    var order: Order
+    @Bindable var order: Order
     
     var body: some View {
         NavigationStack {
             Form {
-                Text("Hm")
+                Section {
+                    TextField("Name", text: $order.name)
+                    TextField("Street address", text: $order.streetAddress)
+                    TextField("City", text: $order.city)
+                    TextField("ZIP Code", text: $order.zip)
+                }
+                
+                Section{
+                    NavigationLink("Checkout") {
+                        CheckoutView(order: order)
+                    }
+                }
             }
-            .navigationTitle("Address Details")
+            .navigationTitle("Delivery address")
         }
     }
 }

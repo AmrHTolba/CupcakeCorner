@@ -10,11 +10,19 @@ import SwiftUI
 
 @Observable
 class Order {
+    // Cake Details
     static let types = ["Vanilla", "Chocolate", "Strawberry", "Red Velvet", "Carrot Cake"]
     
     var type = 0
     var quantity = 3
     
+    // Order Address
+    var name = ""
+    var streetAddress = ""
+    var city = ""
+    var zip = ""
+    
+    // Special Requests
     var specialRequestsEnabled = false {
         didSet {
             if !specialRequestsEnabled {

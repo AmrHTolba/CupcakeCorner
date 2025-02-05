@@ -34,12 +34,12 @@ class Order: Codable {
     var city = ""
     var zip = ""
     var hasValidAddress: Bool {
-        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
-            return false
-        }
-        else {
-            return true
-        }
+        let isNameValid = name.matches(ValidationType.name.regex)
+        let isStreetAddressValid = streetAddress.matches(ValidationType.streetAddress.regex)
+        let isCityValid = city.matches(ValidationType.city.regex)
+        let isZipValid = zip.matches(ValidationType.zipCode.regex)
+
+        return isNameValid && isStreetAddressValid && isCityValid && isZipValid
     }
     
     

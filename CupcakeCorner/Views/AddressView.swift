@@ -16,9 +16,13 @@ struct AddressView: View {
             Form {
                 Section {
                     TextField("Name", text: $order.name)
+                        .validate($order.name, type: .name)
                     TextField("Street address", text: $order.streetAddress)
+                        .validate($order.streetAddress, type: .streetAddress)
                     TextField("City", text: $order.city)
+                        .validate($order.city, type: .city)
                     TextField("ZIP Code", text: $order.zip)
+                        .validate($order.zip, type: .zipCode)
                 }
                 
                 Section{

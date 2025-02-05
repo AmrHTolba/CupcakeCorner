@@ -42,7 +42,7 @@ struct CheckoutView: View {
             .scrollBounceBehavior(.basedOnSize)
             .navigationTitle("Check out")
             .navigationBarTitleDisplayMode(.inline)
-            .alert("Thank You!", isPresented: $showingConfirmation) {
+            .alert("Attention!", isPresented: $showingConfirmation) {
                 Button("Ok") {}
             } message: {
                 Text(confirmationMessage)
@@ -61,7 +61,7 @@ struct CheckoutView: View {
         let url = URL(string: "https://reqres.in/api/cupcakes")!
         var request = URLRequest(url: url)
         request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
+        request.httpMethod = "Post"
         
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
@@ -69,7 +69,8 @@ struct CheckoutView: View {
             confirmationMessage = "Your order \(decodedOrder.quantity) \(Order.types[decodedOrder.type].lowercased()) cupcakes with a total price of \(decodedOrder.total)$ has been placed!"
             showingConfirmation = true
         } catch {
-            print("Check out failed: \(error.localizedDescription)")
+            confirmationMessage = "Check out failed: \(error.localizedDescription)"
+            showingConfirmation = true
         }
         
     }

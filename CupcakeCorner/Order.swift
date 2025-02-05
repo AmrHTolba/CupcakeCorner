@@ -43,5 +43,24 @@ class Order {
     var extraFrosting = false
     var addSprinkles = false
     
+    
+    // Cost Calculatin
+    var total: Decimal {
+        var cost  = Decimal(quantity) * 2
+        
+        // Extra cost the more complicated it is
+        cost += Decimal(type)/2
+        
+        // 1$
+        if extraFrosting {
+            cost += Decimal(quantity)
+        }
+        
+        // 0.5$
+        if addSprinkles {
+            cost += Decimal(quantity)/2
+        }
+        return cost
+    }
 }
 

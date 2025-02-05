@@ -26,14 +26,14 @@ struct ContentView: View {
                         }
                     }
                     
-                    Stepper("Number of cakes: \(order.quantity)", value: $order.quantity, in: 3...20)
+                    Stepper("Number of cakes (2$/Pc): \(order.quantity)", value: $order.quantity, in: 3...20)
                 }
                 
                 Section {
                     Toggle("Special requests enabled?", isOn: $order.specialRequestsEnabled)
                     if order.specialRequestsEnabled {
-                        Toggle("Extra Frosting", isOn: $order.extraFrosting)
-                        Toggle("Add Sprinkles", isOn: $order.addSprinkles)
+                        Toggle("Extra Frosting (1$/Pc)", isOn: $order.extraFrosting)
+                        Toggle("Add Sprinkles (0.5$/Pc)", isOn: $order.addSprinkles)
                     }
                 }
                 

@@ -14,9 +14,9 @@ enum ValidationType {
     var regex: String {
         switch self{
         case .name, .city:
-            return "^[A-Za-z\\s]{2,50}$"
+            return "^(?!\\s*$)[A-Za-z\\s]{2,10}$"
         case .streetAddress:
-            return "^[A-Za-z0-9\\s]{5,100}$"
+            return "^(?!\\s*$)[A-Za-z0-9\\s]{5,100}$"
         case .zipCode:
             return "^[0-9]{4,10}$"
         }

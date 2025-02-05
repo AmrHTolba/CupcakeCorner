@@ -33,6 +33,7 @@ class Order: Codable {
     var streetAddress = ""
     var city = ""
     var zip = ""
+    
     var hasValidAddress: Bool {
         let isNameValid = name.matches(ValidationType.name.regex)
         let isStreetAddressValid = streetAddress.matches(ValidationType.streetAddress.regex)
